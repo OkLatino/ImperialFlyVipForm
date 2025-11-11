@@ -22,6 +22,12 @@
             padding: 1rem;
         }
 
+        @media (max-width: 640px) {
+            body {
+                padding: 0.5rem;
+            }
+        }
+
         body::before {
             content: '';
             position: fixed;
@@ -55,6 +61,13 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .outer-container {
+                padding: 0.25rem;
+                gap: 1rem;
+            }
+        }
+
         /* Video Section Styles */
         .video-section {
             width: 100%;
@@ -77,6 +90,14 @@
             .video-container {
                 padding: 1rem;
                 border-radius: 1.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .video-container {
+                padding: 0.75rem;
+                border-radius: 1rem;
+                border-width: 1px;
             }
         }
 
@@ -109,6 +130,13 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .video-header {
+                margin-bottom: 0.75rem;
+                padding-bottom: 0.5rem;
+            }
+        }
+
         .video-title {
             font-size: 24px;
             font-weight: bold;
@@ -128,6 +156,14 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .video-title {
+                font-size: 16px;
+                letter-spacing: 0.5px;
+                margin-bottom: 6px;
+            }
+        }
+
         .video-subtitle {
             font-size: 16px;
             color: #DC143C;
@@ -138,6 +174,12 @@
         @media (max-width: 768px) {
             .video-subtitle {
                 font-size: 14px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .video-subtitle {
+                font-size: 12px;
             }
         }
 
@@ -158,6 +200,14 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .video-steps {
+                margin-bottom: 0.75rem;
+                padding: 0.5rem;
+                border-radius: 0.5rem;
+            }
+        }
+
         .video-steps-title {
             font-size: 16px;
             font-weight: 600;
@@ -173,6 +223,14 @@
             .video-steps-title {
                 font-size: 14px;
                 margin-bottom: 0.75rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .video-steps-title {
+                font-size: 13px;
+                margin-bottom: 0.5rem;
+                gap: 0.25rem;
             }
         }
 
@@ -199,15 +257,30 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .video-steps-list li {
+                font-size: 11px;
+                padding: 0.3rem 0;
+                gap: 0.25rem;
+            }
+        }
+
         .video-steps-list li:hover {
             color: #DC143C;
             text-shadow: 0 0 8px rgba(220, 20, 60, 0.6);
             transform: translateX(5px);
         }
 
+        @media (max-width: 640px) {
+            .video-steps-list li:hover {
+                transform: translateX(3px);
+            }
+        }
+
         .video-steps-list li::before {
             content: '✅';
             flex-shrink: 0;
+            font-size: 1em;
         }
 
         .video-player-wrapper {
@@ -227,6 +300,12 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .video-player-wrapper {
+                border-radius: 0.5rem;
+            }
+        }
+
         .video-player {
             width: 100%;
             height: auto;
@@ -234,128 +313,29 @@
             background: #000;
         }
 
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.3);
-            opacity: 1;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-            z-index: 10;
+        /* Ocultar controles nativos del video */
+        .video-player::-webkit-media-controls {
+            display: none !important;
         }
 
-        .video-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
+        .video-player::-webkit-media-controls-enclosure {
+            display: none !important;
         }
 
-        .play-button {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, #DC143C, #B22222, #8B0000);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            pointer-events: auto;
-            transition: all 0.3s ease;
-            box-shadow: 
-                0 0 20px rgba(220, 20, 60, 0.8),
-                0 0 40px rgba(220, 20, 60, 0.6);
-            border: 3px solid #FFD700;
+        .video-player::-webkit-media-controls-panel {
+            display: none !important;
         }
 
-        @media (max-width: 768px) {
-            .play-button {
-                width: 60px;
-                height: 60px;
-            }
+        .video-player::-webkit-media-controls-play-button {
+            display: none !important;
         }
 
-        .play-button:hover {
-            transform: scale(1.1);
-            background: linear-gradient(45deg, #FF1744, #DC143C, #B22222);
-            box-shadow: 
-                0 0 30px rgba(220, 20, 60, 1),
-                0 0 60px rgba(220, 20, 60, 0.8);
+        .video-player::-webkit-media-controls-start-playback-button {
+            display: none !important;
         }
 
-        .play-icon {
-            width: 32px;
-            height: 32px;
-            color: #FFD700;
-            margin-left: 4px;
-            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
-        }
-
-        @media (max-width: 768px) {
-            .play-icon {
-                width: 24px;
-                height: 24px;
-            }
-        }
-
-        .custom-progress-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: transparent;
-            cursor: pointer;
-            z-index: 20;
-        }
-
-        .progress-bg {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 2px;
-        }
-
-        .progress-fill {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 4px;
-            background: #DC143C;
-            border-radius: 2px;
-            width: 0%;
-            transition: width 0.1s linear;
-            box-shadow: 
-                0 0 8px rgba(220, 20, 60, 0.8),
-                0 0 16px rgba(220, 20, 60, 0.6);
-        }
-
-        .progress-handle {
-            position: absolute;
-            bottom: -2px;
-            left: 0%;
-            width: 8px;
-            height: 8px;
-            background: #FFD700;
-            border-radius: 50%;
-            transform: translateX(-50%);
-            transition: left 0.1s linear;
-            box-shadow: 
-                0 0 8px rgba(255, 215, 0, 0.8),
-                0 0 16px rgba(255, 215, 0, 0.6);
-            opacity: 0;
-        }
-
-        .custom-progress-bar:hover .progress-handle {
-            opacity: 1;
+        .hidden {
+            display: none !important;
         }
 
         .step-circle-container {
@@ -377,6 +357,12 @@
             .step-circle-container {
                 border-radius: 1.5rem;
                 border-width: 1px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .step-circle-container {
+                border-radius: 1rem;
             }
         }
 
@@ -407,6 +393,12 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .header {
+                padding: 1rem 0.75rem 0.5rem 0.75rem;
+            }
+        }
+
         .header h1 {
             font-size: 24px;
             font-weight: bold;
@@ -426,6 +418,14 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 16px;
+                letter-spacing: 0.5px;
+                margin-bottom: 6px;
+            }
+        }
+
         .header p {
             font-size: 16px;
             color: #DC143C;
@@ -436,6 +436,12 @@
         @media (max-width: 768px) {
             .header p {
                 font-size: 14px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header p {
+                font-size: 12px;
             }
         }
 
@@ -453,6 +459,12 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .step-indicator-row {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+
         .step-content-default {
             position: relative;
             overflow: hidden;
@@ -461,7 +473,13 @@
 
         @media (max-width: 768px) {
             .step-content-default {
-                min-height: 150px;
+                min-height: 180px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .step-content-default {
+                min-height: 160px;
             }
         }
 
@@ -479,6 +497,14 @@
                 padding-left: 1rem;
                 padding-right: 1rem;
                 padding-bottom: 0.75rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .step-default {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+                padding-bottom: 0.5rem;
             }
         }
 
@@ -534,6 +560,13 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .step-title {
+                font-size: 14px;
+                margin-bottom: 0.75rem;
+            }
+        }
+
         .form-group {
             margin-bottom: 1.5rem;
             position: relative;
@@ -542,6 +575,12 @@
         @media (max-width: 768px) {
             .form-group {
                 margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .form-group {
+                margin-bottom: 0.75rem;
             }
         }
 
@@ -557,6 +596,13 @@
         @media (max-width: 768px) {
             .form-label {
                 font-size: 12px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .form-label {
+                font-size: 11px;
+                margin-bottom: 0.4rem;
             }
         }
 
@@ -578,6 +624,15 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .form-input {
+                padding: 8px 10px;
+                font-size: 14px;
+                border-radius: 6px;
+                border-width: 1px;
+            }
+        }
+
         .form-input:focus {
             outline: none;
             border-color: #FFD700;
@@ -595,6 +650,13 @@
             gap: 1rem;
         }
 
+        @media (max-width: 640px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+        }
+
         .phone-row {
             display: grid;
             grid-template-columns: 110px 1fr;
@@ -602,12 +664,8 @@
         }
 
         @media (max-width: 640px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
             .phone-row {
-                grid-template-columns: 100px 1fr;
+                grid-template-columns: 90px 1fr;
                 gap: 0.4rem;
             }
         }
@@ -639,6 +697,14 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .autocomplete-list {
+                max-height: 120px;
+                border-radius: 0 0 6px 6px;
+                border-width: 1px;
+            }
+        }
+
         .autocomplete-list.active {
             display: block;
         }
@@ -654,6 +720,12 @@
         @media (max-width: 768px) {
             .autocomplete-item {
                 padding: 8px 12px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .autocomplete-item {
+                padding: 6px 10px;
             }
         }
 
@@ -681,9 +753,22 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .autocomplete-item small {
+                font-size: 9px;
+                margin-top: 1px;
+            }
+        }
+
         /* Scrollbar personalizado para autocomplete */
         .autocomplete-list::-webkit-scrollbar {
             width: 8px;
+        }
+
+        @media (max-width: 640px) {
+            .autocomplete-list::-webkit-scrollbar {
+                width: 6px;
+            }
         }
 
         .autocomplete-list::-webkit-scrollbar-track {
@@ -714,6 +799,14 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .footer-container {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+                padding-bottom: 1rem;
+            }
+        }
+
         .footer-nav {
             margin-top: 2.5rem;
             display: flex;
@@ -722,6 +815,12 @@
         @media (max-width: 768px) {
             .footer-nav {
                 margin-top: 1.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .footer-nav {
+                margin-top: 1rem;
             }
         }
 
@@ -749,6 +848,13 @@
             .back-button {
                 font-size: 14px;
                 padding: 0.6rem 0.8rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .back-button {
+                font-size: 13px;
+                padding: 0.5rem 0.6rem;
             }
         }
 
@@ -791,6 +897,13 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .next-button {
+                font-size: 13px;
+                padding: 0.5rem 1rem;
+            }
+        }
+
         .next-button:hover {
             background: linear-gradient(45deg, #FF1744, #DC143C, #B22222);
             transform: translateY(-2px) scale(1.05);
@@ -798,6 +911,12 @@
                 0 0 25px rgba(220, 20, 60, 0.8),
                 0 0 50px rgba(220, 20, 60, 0.6);
             text-shadow: 0 0 15px rgba(255, 215, 0, 1);
+        }
+
+        @media (max-width: 640px) {
+            .next-button:hover {
+                transform: translateY(-1px) scale(1.02);
+            }
         }
 
         .next-button:active {
@@ -821,6 +940,12 @@
             transform: scale(1.1);
         }
 
+        @media (max-width: 640px) {
+            .step-indicator:hover .step-indicator-inner {
+                transform: scale(1.05);
+            }
+        }
+
         .step-indicator-inner {
             display: flex;
             height: 2rem;
@@ -837,6 +962,14 @@
             .step-indicator-inner {
                 height: 1.5rem;
                 width: 1.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .step-indicator-inner {
+                height: 1.25rem;
+                width: 1.25rem;
+                border-width: 1px;
             }
         }
 
@@ -874,6 +1007,13 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .active-dot {
+                height: 0.4rem;
+                width: 0.4rem;
+            }
+        }
+
         .step-number {
             font-size: 0.875rem;
             font-weight: bold;
@@ -882,6 +1022,12 @@
         @media (max-width: 768px) {
             .step-number {
                 font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .step-number {
+                font-size: 0.65rem;
             }
         }
 
@@ -900,6 +1046,14 @@
             .step-connector {
                 margin-left: 0.25rem;
                 margin-right: 0.25rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .step-connector {
+                margin-left: 0.2rem;
+                margin-right: 0.2rem;
+                height: 0.1rem;
             }
         }
 
@@ -926,6 +1080,13 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .check-icon {
+                height: 0.6rem;
+                width: 0.6rem;
+            }
+        }
+
         .success-message {
             text-align: center;
             padding: 2rem;
@@ -934,6 +1095,12 @@
         @media (max-width: 768px) {
             .success-message {
                 padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .success-message {
+                padding: 1rem;
             }
         }
 
@@ -952,6 +1119,13 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .success-title {
+                font-size: 16px;
+                margin-bottom: 0.5rem;
+            }
+        }
+
         .success-text {
             font-size: 16px;
             color: #DC143C;
@@ -965,10 +1139,23 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .success-text {
+                font-size: 12px;
+                line-height: 1.4;
+            }
+        }
+
         .loading {
             display: flex;
             align-items: center;
             gap: 0.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .loading {
+                gap: 0.3rem;
+            }
         }
 
         .spinner {
@@ -980,13 +1167,16 @@
             animation: spin 1s linear infinite;
         }
 
+        @media (max-width: 640px) {
+            .spinner {
+                width: 14px;
+                height: 14px;
+            }
+        }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
-        }
-
-        .hidden {
-            display: none;
         }
 
         /* Validación de errores */
@@ -1005,6 +1195,33 @@
         @media (max-width: 768px) {
             .error-message {
                 font-size: 10px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .error-message {
+                font-size: 9px;
+                margin-top: 0.2rem;
+            }
+        }
+
+        /* Touch optimizations for mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .next-button:hover {
+                transform: none;
+            }
+            
+            .next-button:active {
+                transform: scale(0.98);
+            }
+            
+            .back-button:hover {
+                color: #a3a3a3;
+                text-shadow: none;
+            }
+            
+            .back-button:active {
+                color: #FFD700;
             }
         }
     </style>
@@ -1031,12 +1248,15 @@
                 </div>
                 
                 <!-- Video Player -->
-                <div class="video-player-wrapper">
+                <div class="video-player-wrapper" id="videoWrapper">
                     <video 
                         class="video-player" 
-                        controls 
-                        preload="auto"
                         id="instructionVideo"
+                        autoplay
+                        loop
+                        muted
+                        playsinline
+                        preload="auto"
                     >
                         <source src="./assets/PASOS_IMPERIAL_FLY.mp4" type="video/mp4">
                         <p style="padding: 2rem; text-align: center; color: #FFD700;">
@@ -1044,18 +1264,6 @@
                             <a href="./assets/PASOS_IMPERIAL_FLY.mp4" style="color: #DC143C;">Descarga el video aquí</a>
                         </p>
                     </video>
-                    <div class="video-overlay" id="videoOverlay">
-                        <div class="play-button" id="customPlayBtn">
-                            <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="custom-progress-bar" id="customProgressBar">
-                        <div class="progress-bg"></div>
-                        <div class="progress-fill" id="progressFill"></div>
-                        <div class="progress-handle" id="progressHandle"></div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1938,86 +2146,27 @@
             }
         }
 
-        // Funcionalidad del reproductor de video
+        // Inicialización del video con autoplay
         function initVideoPlayer() {
             const video = document.getElementById('instructionVideo');
-            const playBtn = document.getElementById('customPlayBtn');
-            const overlay = document.getElementById('videoOverlay');
-            const progressBar = document.getElementById('customProgressBar');
-            const progressFill = document.getElementById('progressFill');
-            const progressHandle = document.getElementById('progressHandle');
             
-            if (!video || !playBtn || !overlay) return;
+            if (!video) return;
             
-            overlay.classList.add('hidden');
-            
+            // Intentar reproducir el video automáticamente
             const playPromise = video.play();
             
             if (playPromise !== undefined) {
-                playPromise
-                    .then(() => {
-                        overlay.classList.add('hidden');
-                    })
-                    .catch(error => {
-                        console.log('Autoplay bloqueado:', error);
-                        overlay.classList.remove('hidden');
-                    });
+                playPromise.catch(error => {
+                    // El autoplay fue bloqueado por el navegador
+                    console.log('Autoplay bloqueado por el navegador. El usuario deberá interactuar con la página primero.');
+                    
+                    // Intentar reproducir después de cualquier interacción del usuario
+                    document.body.addEventListener('click', function playOnInteraction() {
+                        video.play().catch(e => console.log('Error al reproducir:', e));
+                        document.body.removeEventListener('click', playOnInteraction);
+                    }, { once: true });
+                });
             }
-            
-            playBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                video.play().then(() => {
-                    overlay.classList.add('hidden');
-                }).catch(error => {
-                    console.error('Error al reproducir:', error);
-                });
-            });
-            
-            overlay.addEventListener('click', () => {
-                video.play().then(() => {
-                    overlay.classList.add('hidden');
-                }).catch(error => {
-                    console.error('Error al reproducir:', error);
-                });
-            });
-            
-            video.addEventListener('timeupdate', () => {
-                if (video.duration) {
-                    const progress = (video.currentTime / video.duration) * 100;
-                    progressFill.style.width = `${progress}%`;
-                    progressHandle.style.left = `${progress}%`;
-                }
-            });
-            
-            progressBar.addEventListener('click', (e) => {
-                const rect = progressBar.getBoundingClientRect();
-                const pos = (e.clientX - rect.left) / rect.width;
-                video.currentTime = pos * video.duration;
-            });
-            
-            video.addEventListener('play', () => {
-                overlay.classList.add('hidden');
-            });
-            
-            video.addEventListener('pause', () => {
-                if (!video.ended) {
-                    overlay.classList.remove('hidden');
-                }
-            });
-            
-            video.addEventListener('ended', () => {
-                overlay.classList.remove('hidden');
-                setTimeout(() => {
-                    document.querySelector('.step-circle-container').scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }, 500);
-            });
-            
-            video.addEventListener('error', () => {
-                console.warn('Error al cargar el video');
-            });
         }
 
         // Inicializar todo
