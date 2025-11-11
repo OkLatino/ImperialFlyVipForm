@@ -1,0 +1,2034 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imperial Fly - Formulario VIP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #000, #1a1a1a, #000);
+            color: #FFD700;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(220, 20, 60, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .outer-container {
+            display: flex;
+            min-height: 100%;
+            flex: 1 1 0%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            max-width: 800px;
+            width: 100%;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .outer-container {
+                padding: 0.5rem;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Video Section Styles */
+        .video-section {
+            width: 100%;
+            max-width: 32rem;
+        }
+
+        .video-container {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            box-shadow: 
+                0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04),
+                0 0 30px rgba(255, 215, 0, 0.3);
+            animation: videoGlow 4s ease-in-out infinite alternate;
+        }
+
+        @media (max-width: 768px) {
+            .video-container {
+                padding: 1rem;
+                border-radius: 1.5rem;
+            }
+        }
+
+        @keyframes videoGlow {
+            0% {
+                box-shadow: 
+                    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+                    0 0 30px rgba(255, 215, 0, 0.3);
+            }
+            100% {
+                box-shadow: 
+                    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+                    0 0 50px rgba(255, 215, 0, 0.5);
+            }
+        }
+
+        .video-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .video-header {
+                margin-bottom: 1rem;
+                padding-bottom: 0.75rem;
+            }
+        }
+
+        .video-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 
+                0 0 10px rgba(255, 215, 0, 0.8),
+                0 0 20px rgba(255, 215, 0, 0.6);
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .video-title {
+                font-size: 18px;
+                letter-spacing: 1px;
+            }
+        }
+
+        .video-subtitle {
+            font-size: 16px;
+            color: #DC143C;
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(220, 20, 60, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .video-subtitle {
+                font-size: 14px;
+            }
+        }
+
+        /* Sección de pasos ANTES del video */
+        .video-steps {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .video-steps {
+                margin-bottom: 1rem;
+                padding: 0.75rem;
+                border-radius: 0.75rem;
+            }
+        }
+
+        .video-steps-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #FFD700;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .video-steps-title {
+                font-size: 14px;
+                margin-bottom: 0.75rem;
+            }
+        }
+
+        .video-steps-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .video-steps-list li {
+            padding: 0.5rem 0;
+            font-size: 14px;
+            color: #FFD700;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .video-steps-list li {
+                font-size: 12px;
+                padding: 0.4rem 0;
+            }
+        }
+
+        .video-steps-list li:hover {
+            color: #DC143C;
+            text-shadow: 0 0 8px rgba(220, 20, 60, 0.6);
+            transform: translateX(5px);
+        }
+
+        .video-steps-list li::before {
+            content: '✅';
+            flex-shrink: 0;
+        }
+
+        .video-player-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 1rem;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 
+                0 0 20px rgba(255, 215, 0, 0.3),
+                inset 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .video-player-wrapper {
+                border-radius: 0.75rem;
+            }
+        }
+
+        .video-player {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #000;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .video-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #DC143C, #B22222, #8B0000);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 0 20px rgba(220, 20, 60, 0.8),
+                0 0 40px rgba(220, 20, 60, 0.6);
+            border: 3px solid #FFD700;
+        }
+
+        @media (max-width: 768px) {
+            .play-button {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(45deg, #FF1744, #DC143C, #B22222);
+            box-shadow: 
+                0 0 30px rgba(220, 20, 60, 1),
+                0 0 60px rgba(220, 20, 60, 0.8);
+        }
+
+        .play-icon {
+            width: 32px;
+            height: 32px;
+            color: #FFD700;
+            margin-left: 4px;
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+        }
+
+        @media (max-width: 768px) {
+            .play-icon {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        .custom-progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: transparent;
+            cursor: pointer;
+            z-index: 20;
+        }
+
+        .progress-bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+        }
+
+        .progress-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: #DC143C;
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.1s linear;
+            box-shadow: 
+                0 0 8px rgba(220, 20, 60, 0.8),
+                0 0 16px rgba(220, 20, 60, 0.6);
+        }
+
+        .progress-handle {
+            position: absolute;
+            bottom: -2px;
+            left: 0%;
+            width: 8px;
+            height: 8px;
+            background: #FFD700;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            transition: left 0.1s linear;
+            box-shadow: 
+                0 0 8px rgba(255, 215, 0, 0.8),
+                0 0 16px rgba(255, 215, 0, 0.6);
+            opacity: 0;
+        }
+
+        .custom-progress-bar:hover .progress-handle {
+            opacity: 1;
+        }
+
+        .step-circle-container {
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            max-width: 28rem;
+            border-radius: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 
+                0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04),
+                0 0 30px rgba(255, 215, 0, 0.3);
+            animation: containerGlow 4s ease-in-out infinite alternate;
+        }
+
+        @media (max-width: 768px) {
+            .step-circle-container {
+                border-radius: 1.5rem;
+                border-width: 1px;
+            }
+        }
+
+        @keyframes containerGlow {
+            0% {
+                box-shadow: 
+                    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+                    0 0 30px rgba(255, 215, 0, 0.3);
+            }
+            100% {
+                box-shadow: 
+                    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+                    0 0 50px rgba(255, 215, 0, 0.5);
+            }
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem 2rem 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1.5rem 1rem 0.75rem 1rem;
+            }
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 
+                0 0 10px rgba(255, 215, 0, 0.8),
+                0 0 20px rgba(255, 215, 0, 0.6);
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 18px;
+                letter-spacing: 1px;
+            }
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #DC143C;
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(220, 20, 60, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .header p {
+                font-size: 14px;
+            }
+        }
+
+        .step-indicator-row {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            padding: 2rem;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .step-indicator-row {
+                padding: 1rem 0.5rem;
+            }
+        }
+
+        .step-content-default {
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+        }
+
+        @media (max-width: 768px) {
+            .step-content-default {
+                min-height: 150px;
+            }
+        }
+
+        .step-default {
+            padding-left: 2rem;
+            padding-right: 2rem;
+            padding-bottom: 1rem;
+            opacity: 1;
+            transform: translateX(0);
+            transition: all 0.4s ease-in-out;
+        }
+
+        @media (max-width: 768px) {
+            .step-default {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-bottom: 0.75rem;
+            }
+        }
+
+        .step-default.slide-out-left {
+            opacity: 0;
+            transform: translateX(-50%);
+        }
+
+        .step-default.slide-out-right {
+            opacity: 0;
+            transform: translateX(50%);
+        }
+
+        .step-default.slide-in-left {
+            opacity: 0;
+            transform: translateX(-100%);
+            animation: slideInLeft 0.4s ease-out forwards;
+        }
+
+        .step-default.slide-in-right {
+            opacity: 0;
+            transform: translateX(100%);
+            animation: slideInRight 0.4s ease-out forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .step-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .step-title {
+                font-size: 16px;
+                margin-bottom: 1rem;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .form-group {
+                margin-bottom: 1rem;
+            }
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .form-label {
+                font-size: 12px;
+            }
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 215, 0, 0.05);
+            color: #FFD700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .form-input {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #FFD700;
+            background: rgba(255, 215, 0, 0.1);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 215, 0, 0.5);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .phone-row {
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .phone-row {
+                grid-template-columns: 100px 1fr;
+                gap: 0.4rem;
+            }
+        }
+
+        /* Autocomplete Styles */
+        .autocomplete-wrapper {
+            position: relative;
+        }
+
+        .autocomplete-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .autocomplete-list {
+                max-height: 150px;
+            }
+        }
+
+        .autocomplete-list.active {
+            display: block;
+        }
+
+        .autocomplete-item {
+            padding: 10px 16px;
+            cursor: pointer;
+            color: #FFD700;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .autocomplete-item {
+                padding: 8px 12px;
+            }
+        }
+
+        .autocomplete-item:last-child {
+            border-bottom: none;
+        }
+
+        .autocomplete-item:hover,
+        .autocomplete-item.active {
+            background: rgba(255, 215, 0, 0.2);
+            color: #DC143C;
+            text-shadow: 0 0 8px rgba(220, 20, 60, 0.6);
+        }
+
+        .autocomplete-item small {
+            display: block;
+            font-size: 12px;
+            color: rgba(255, 215, 0, 0.7);
+            margin-top: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .autocomplete-item small {
+                font-size: 10px;
+            }
+        }
+
+        /* Scrollbar personalizado para autocomplete */
+        .autocomplete-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .autocomplete-list::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 0 0 8px 0;
+        }
+
+        .autocomplete-list::-webkit-scrollbar-thumb {
+            background: rgba(255, 215, 0, 0.5);
+            border-radius: 4px;
+        }
+
+        .autocomplete-list::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 215, 0, 0.7);
+        }
+
+        .footer-container {
+            padding-left: 2rem;
+            padding-right: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer-container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-bottom: 1.5rem;
+            }
+        }
+
+        .footer-nav {
+            margin-top: 2.5rem;
+            display: flex;
+        }
+
+        @media (max-width: 768px) {
+            .footer-nav {
+                margin-top: 1.5rem;
+            }
+        }
+
+        .footer-nav.spread {
+            justify-content: space-between;
+        }
+
+        .footer-nav.end {
+            justify-content: flex-end;
+        }
+
+        .back-button {
+            transition: all 350ms;
+            border: none;
+            background: none;
+            border-radius: 0.25rem;
+            padding: 0.75rem 1rem;
+            color: #a3a3a3;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .back-button {
+                font-size: 14px;
+                padding: 0.6rem 0.8rem;
+            }
+        }
+
+        .back-button:hover {
+            color: #FFD700;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+        }
+
+        .back-button.inactive {
+            pointer-events: none;
+            opacity: 0.5;
+            color: #a3a3a3;
+        }
+
+        .next-button {
+            transition: all 350ms;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 9999px;
+            background: linear-gradient(45deg, #DC143C, #B22222, #8B0000);
+            color: #FFD700;
+            font-weight: 500;
+            letter-spacing: -0.025em;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+            box-shadow: 
+                0 0 15px rgba(220, 20, 60, 0.6),
+                0 0 30px rgba(220, 20, 60, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .next-button {
+                font-size: 14px;
+                padding: 0.6rem 1.2rem;
+            }
+        }
+
+        .next-button:hover {
+            background: linear-gradient(45deg, #FF1744, #DC143C, #B22222);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 
+                0 0 25px rgba(220, 20, 60, 0.8),
+                0 0 50px rgba(220, 20, 60, 0.6);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 1);
+        }
+
+        .next-button:active {
+            transform: translateY(0) scale(1);
+        }
+
+        .next-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .step-indicator {
+            position: relative;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .step-indicator:hover .step-indicator-inner {
+            transform: scale(1.1);
+        }
+
+        .step-indicator-inner {
+            display: flex;
+            height: 2rem;
+            width: 2rem;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        @media (max-width: 768px) {
+            .step-indicator-inner {
+                height: 1.5rem;
+                width: 1.5rem;
+            }
+        }
+
+        .step-indicator-inner.inactive {
+            background-color: #222;
+            color: #a3a3a3;
+            border-color: #444;
+        }
+
+        .step-indicator-inner.active {
+            background-color: #FFD700;
+            color: #000;
+            border-color: #FFD700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+        }
+
+        .step-indicator-inner.complete {
+            background-color: #DC143C;
+            color: #FFD700;
+            border-color: #DC143C;
+            box-shadow: 0 0 15px rgba(220, 20, 60, 0.6);
+        }
+
+        .active-dot {
+            height: 0.75rem;
+            width: 0.75rem;
+            border-radius: 9999px;
+            background-color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .active-dot {
+                height: 0.5rem;
+                width: 0.5rem;
+            }
+        }
+
+        .step-number {
+            font-size: 0.875rem;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .step-number {
+                font-size: 0.75rem;
+            }
+        }
+
+        .step-connector {
+            position: relative;
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+            height: 0.125rem;
+            flex: 1;
+            overflow: hidden;
+            border-radius: 0.25rem;
+            background-color: #52525b;
+        }
+
+        @media (max-width: 768px) {
+            .step-connector {
+                margin-left: 0.25rem;
+                margin-right: 0.25rem;
+            }
+        }
+
+        .step-connector-inner {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background-color: #DC143C;
+            transition: width 0.4s ease;
+            box-shadow: 0 0 8px rgba(220, 20, 60, 0.6);
+        }
+
+        .check-icon {
+            height: 1rem;
+            width: 1rem;
+            color: #FFD700;
+        }
+
+        @media (max-width: 768px) {
+            .check-icon {
+                height: 0.75rem;
+                width: 0.75rem;
+            }
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .success-message {
+                padding: 1.5rem;
+            }
+        }
+
+        .success-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .success-title {
+                font-size: 18px;
+                margin-bottom: 0.75rem;
+            }
+        }
+
+        .success-text {
+            font-size: 16px;
+            color: #DC143C;
+            text-shadow: 0 0 8px rgba(220, 20, 60, 0.6);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .success-text {
+                font-size: 14px;
+            }
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-top: 2px solid #FFD700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Validación de errores */
+        .form-input.error {
+            border-color: #FF4444;
+            background: rgba(255, 68, 68, 0.1);
+        }
+
+        .error-message {
+            color: #FF4444;
+            font-size: 12px;
+            margin-top: 0.25rem;
+            text-shadow: 0 0 5px rgba(255, 68, 68, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .error-message {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="outer-container">
+        <!-- Video Section -->
+        <div class="video-section">
+            <div class="video-container">
+                <div class="video-header">
+                    <h2 class="video-title">🎥 Cómo Agendar tu Cita VIP</h2>
+                    <p class="video-subtitle">Mira este video para entender el proceso</p>
+                </div>
+                
+                <!-- Pasos ANTES del video -->
+                <div class="video-steps">
+                    <p class="video-steps-title">📋 En este video aprenderás:</p>
+                    <ul class="video-steps-list">
+                        <li>Cómo completar correctamente el formulario</li>
+                        <li>Qué información necesitas tener lista</li>
+                        <li>Cuándo y cómo te contactaremos</li>
+                        <li>Los siguientes pasos del proceso VIP</li>
+                    </ul>
+                </div>
+                
+                <!-- Video Player -->
+                <div class="video-player-wrapper">
+                    <video 
+                        class="video-player" 
+                        controls 
+                        preload="auto"
+                        id="instructionVideo"
+                    >
+                        <source src="./assets/PASOS_IMPERIAL_FLY.mp4" type="video/mp4">
+                        <p style="padding: 2rem; text-align: center; color: #FFD700;">
+                            Tu navegador no soporta la reproducción de video. 
+                            <a href="./assets/PASOS_IMPERIAL_FLY.mp4" style="color: #DC143C;">Descarga el video aquí</a>
+                        </p>
+                    </video>
+                    <div class="video-overlay" id="videoOverlay">
+                        <div class="play-button" id="customPlayBtn">
+                            <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="custom-progress-bar" id="customProgressBar">
+                        <div class="progress-bg"></div>
+                        <div class="progress-fill" id="progressFill"></div>
+                        <div class="progress-handle" id="progressHandle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="step-circle-container">
+            <!-- Header -->
+            <div class="header">
+                <h1>✈️ Imperial Fly VIP ✈️</h1>
+                <p>Registro para Acceso Exclusivo</p>
+            </div>
+
+            <!-- Step Indicators -->
+            <div class="step-indicator-row">
+                <div class="step-indicator" data-step="1">
+                    <div class="step-indicator-inner active">
+                        <div class="active-dot"></div>
+                    </div>
+                </div>
+                <div class="step-connector">
+                    <div class="step-connector-inner" style="width: 0%"></div>
+                </div>
+                <div class="step-indicator" data-step="2">
+                    <div class="step-indicator-inner inactive">
+                        <span class="step-number">2</span>
+                    </div>
+                </div>
+                <div class="step-connector">
+                    <div class="step-connector-inner" style="width: 0%"></div>
+                </div>
+                <div class="step-indicator" data-step="3">
+                    <div class="step-indicator-inner inactive">
+                        <span class="step-number">3</span>
+                    </div>
+                </div>
+                <div class="step-connector">
+                    <div class="step-connector-inner" style="width: 0%"></div>
+                </div>
+                <div class="step-indicator" data-step="4">
+                    <div class="step-indicator-inner inactive">
+                        <span class="step-number">4</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Content -->
+            <form id="vipForm" action="https://formspree.io/f/mzzayqwe" method="POST">
+                <div class="step-content-default">
+                    <!-- Step 1: Nombre -->
+                    <div class="step-default" id="step-1">
+                        <div class="step-title">¿Cuál es tu nombre?</div>
+                        <div class="form-group">
+                            <label class="form-label" for="fullName">Nombre Completo *</label>
+                            <input 
+                                type="text" 
+                                id="fullName" 
+                                name="fullName" 
+                                class="form-input" 
+                                placeholder="Ingresa tu nombre completo"
+                                required
+                            />
+                            <div class="error-message hidden" id="fullName-error"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: WhatsApp -->
+                    <div class="step-default hidden" id="step-2">
+                        <div class="step-title">Número de WhatsApp</div>
+                        <div class="form-group">
+                            <label class="form-label">WhatsApp donde te contactaremos *</label>
+                            <div class="phone-row">
+                                <div class="autocomplete-wrapper">
+                                    <input 
+                                        type="text" 
+                                        id="countryCode" 
+                                        name="countryCode" 
+                                        class="form-input" 
+                                        placeholder="+52"
+                                        required
+                                    />
+                                    <div class="autocomplete-list" id="countryCodeList"></div>
+                                </div>
+                                <input 
+                                    type="tel" 
+                                    id="whatsapp" 
+                                    name="whatsapp" 
+                                    class="form-input" 
+                                    placeholder="55 1234 5678"
+                                    required
+                                />
+                            </div>
+                            <div class="error-message hidden" id="whatsapp-error"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Email -->
+                    <div class="step-default hidden" id="step-3">
+                        <div class="step-title">Correo Electrónico</div>
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email *</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                class="form-input" 
+                                placeholder="tu@email.com"
+                                required
+                            />
+                            <div class="error-message hidden" id="email-error"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Viaje -->
+                    <div class="step-default hidden" id="step-4">
+                        <div class="step-title">Detalles del Viaje</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="origen">Ciudad de Origen *</label>
+                                <div class="autocomplete-wrapper">
+                                    <input 
+                                        type="text" 
+                                        id="origen" 
+                                        name="origen" 
+                                        class="form-input" 
+                                        placeholder="Ciudad o Aeropuerto"
+                                        required
+                                        autocomplete="off"
+                                    />
+                                    <div class="autocomplete-list" id="origenList"></div>
+                                </div>
+                                <div class="error-message hidden" id="origen-error"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="fechaOrigen">Fecha de Salida *</label>
+                                <input 
+                                    type="date" 
+                                    id="fechaOrigen" 
+                                    name="fechaOrigen" 
+                                    class="form-input"
+                                    required
+                                />
+                                <div class="error-message hidden" id="fechaOrigen-error"></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="destino">Ciudad de Destino *</label>
+                                <div class="autocomplete-wrapper">
+                                    <input 
+                                        type="text" 
+                                        id="destino" 
+                                        name="destino" 
+                                        class="form-input" 
+                                        placeholder="Ciudad o Aeropuerto"
+                                        required
+                                        autocomplete="off"
+                                    />
+                                    <div class="autocomplete-list" id="destinoList"></div>
+                                </div>
+                                <div class="error-message hidden" id="destino-error"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="fechaDestino">Fecha de Regreso</label>
+                                <input 
+                                    type="date" 
+                                    id="fechaDestino" 
+                                    name="fechaDestino" 
+                                    class="form-input"
+                                />
+                                <div class="error-message hidden" id="fechaDestino-error"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div class="step-default hidden" id="success-step">
+                        <div class="success-message">
+                            <div class="success-title">¡Registro Exitoso!</div>
+                            <div class="success-text">
+                                Gracias por registrarte en Imperial Fly VIP.<br>
+                                Te contactaremos pronto en tu WhatsApp para ofrecerte las mejores ofertas exclusivas.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Navigation -->
+                <div class="footer-container" id="footer-nav">
+                    <div class="footer-nav end" id="footer-buttons">
+                        <button type="button" class="back-button inactive" id="backBtn">Anterior</button>
+                        <button type="button" class="next-button" id="nextBtn">
+                            <span id="btnText">Continuar</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Base de datos de códigos de país (50+)
+        const countryCodes = [
+            { code: '+1', country: 'Estados Unidos/Canadá', flag: '🇺🇸' },
+            { code: '+52', country: 'México', flag: '🇲🇽' },
+            { code: '+34', country: 'España', flag: '🇪🇸' },
+            { code: '+44', country: 'Reino Unido', flag: '🇬🇧' },
+            { code: '+33', country: 'Francia', flag: '🇫🇷' },
+            { code: '+49', country: 'Alemania', flag: '🇩🇪' },
+            { code: '+39', country: 'Italia', flag: '🇮🇹' },
+            { code: '+351', country: 'Portugal', flag: '🇵🇹' },
+            { code: '+54', country: 'Argentina', flag: '🇦🇷' },
+            { code: '+55', country: 'Brasil', flag: '🇧🇷' },
+            { code: '+56', country: 'Chile', flag: '🇨🇱' },
+            { code: '+57', country: 'Colombia', flag: '🇨🇴' },
+            { code: '+51', country: 'Perú', flag: '🇵🇪' },
+            { code: '+58', country: 'Venezuela', flag: '🇻🇪' },
+            { code: '+593', country: 'Ecuador', flag: '🇪🇨' },
+            { code: '+591', country: 'Bolivia', flag: '🇧🇴' },
+            { code: '+598', country: 'Uruguay', flag: '🇺🇾' },
+            { code: '+595', country: 'Paraguay', flag: '🇵🇾' },
+            { code: '+506', country: 'Costa Rica', flag: '🇨🇷' },
+            { code: '+507', country: 'Panamá', flag: '🇵🇦' },
+            { code: '+503', country: 'El Salvador', flag: '🇸🇻' },
+            { code: '+502', country: 'Guatemala', flag: '🇬🇹' },
+            { code: '+504', country: 'Honduras', flag: '🇭🇳' },
+            { code: '+505', country: 'Nicaragua', flag: '🇳🇮' },
+            { code: '+509', country: 'Haití', flag: '🇭🇹' },
+            { code: '+53', country: 'Cuba', flag: '🇨🇺' },
+            { code: '+81', country: 'Japón', flag: '🇯🇵' },
+            { code: '+82', country: 'Corea del Sur', flag: '🇰🇷' },
+            { code: '+86', country: 'China', flag: '🇨🇳' },
+            { code: '+91', country: 'India', flag: '🇮🇳' },
+            { code: '+61', country: 'Australia', flag: '🇦🇺' },
+            { code: '+64', country: 'Nueva Zelanda', flag: '🇳🇿' },
+            { code: '+7', country: 'Rusia', flag: '🇷🇺' },
+            { code: '+20', country: 'Egipto', flag: '🇪🇬' },
+            { code: '+27', country: 'Sudáfrica', flag: '🇿🇦' },
+            { code: '+971', country: 'Emiratos Árabes', flag: '🇦🇪' },
+            { code: '+966', country: 'Arabia Saudita', flag: '🇸🇦' },
+            { code: '+90', country: 'Turquía', flag: '🇹🇷' },
+            { code: '+41', country: 'Suiza', flag: '🇨🇭' },
+            { code: '+31', country: 'Países Bajos', flag: '🇳🇱' },
+            { code: '+32', country: 'Bélgica', flag: '🇧🇪' },
+            { code: '+43', country: 'Austria', flag: '🇦🇹' },
+            { code: '+45', country: 'Dinamarca', flag: '🇩🇰' },
+            { code: '+46', country: 'Suecia', flag: '🇸🇪' },
+            { code: '+47', country: 'Noruega', flag: '🇳🇴' },
+            { code: '+358', country: 'Finlandia', flag: '🇫🇮' },
+            { code: '+353', country: 'Irlanda', flag: '🇮🇪' },
+            { code: '+30', country: 'Grecia', flag: '🇬🇷' },
+            { code: '+48', country: 'Polonia', flag: '🇵🇱' },
+            { code: '+420', country: 'República Checa', flag: '🇨🇿' },
+        ];
+
+        // Base de datos compacta de aeropuertos (125+)
+        const airports = [
+            // México (25)
+            { city: 'Ciudad de México', code: 'MEX', name: 'Aeropuerto Internacional Benito Juárez', country: 'México' },
+            { city: 'Cancún', code: 'CUN', name: 'Aeropuerto Internacional de Cancún', country: 'México' },
+            { city: 'Guadalajara', code: 'GDL', name: 'Aeropuerto Internacional Miguel Hidalgo', country: 'México' },
+            { city: 'Monterrey', code: 'MTY', name: 'Aeropuerto Internacional General Mariano Escobedo', country: 'México' },
+            { city: 'Tijuana', code: 'TIJ', name: 'Aeropuerto Internacional General Abelardo L. Rodríguez', country: 'México' },
+            { city: 'Los Cabos', code: 'SJD', name: 'Aeropuerto Internacional de Los Cabos', country: 'México' },
+            { city: 'Puerto Vallarta', code: 'PVR', name: 'Aeropuerto Internacional Lic. Gustavo Díaz Ordaz', country: 'México' },
+            { city: 'Mérida', code: 'MID', name: 'Aeropuerto Internacional Manuel Crescencio Rejón', country: 'México' },
+            { city: 'Acapulco', code: 'ACA', name: 'Aeropuerto Internacional General Juan N. Álvarez', country: 'México' },
+            { city: 'Mazatlán', code: 'MZT', name: 'Aeropuerto Internacional General Rafael Buelna', country: 'México' },
+            { city: 'Chihuahua', code: 'CUU', name: 'Aeropuerto Internacional General Roberto Fierro Villalobos', country: 'México' },
+            { city: 'Hermosillo', code: 'HMO', name: 'Aeropuerto Internacional General Ignacio Pesqueira García', country: 'México' },
+            { city: 'Veracruz', code: 'VER', name: 'Aeropuerto Internacional General Heriberto Jara', country: 'México' },
+            { city: 'Oaxaca', code: 'OAX', name: 'Aeropuerto Internacional Xoxocotlán', country: 'México' },
+            { city: 'Querétaro', code: 'QRO', name: 'Aeropuerto Internacional de Querétaro', country: 'México' },
+            { city: 'León', code: 'BJX', name: 'Aeropuerto Internacional del Bajío', country: 'México' },
+            { city: 'Puebla', code: 'PBC', name: 'Aeropuerto Internacional Hermanos Serdán', country: 'México' },
+            { city: 'La Paz', code: 'LAP', name: 'Aeropuerto Internacional Manuel Márquez de León', country: 'México' },
+            { city: 'Tulum', code: 'TQO', name: 'Aeropuerto Internacional de Tulum', country: 'México' },
+            { city: 'Huatulco', code: 'HUX', name: 'Aeropuerto Internacional Bahías de Huatulco', country: 'México' },
+            { city: 'Ixtapa', code: 'ZIH', name: 'Aeropuerto Internacional de Ixtapa-Zihuatanejo', country: 'México' },
+            { city: 'Cozumel', code: 'CZM', name: 'Aeropuerto Internacional de Cozumel', country: 'México' },
+            { city: 'Villahermosa', code: 'VSA', name: 'Aeropuerto Internacional Carlos Rovirosa Pérez', country: 'México' },
+            { city: 'Tuxtla Gutiérrez', code: 'TGZ', name: 'Aeropuerto Internacional Ángel Albino Corzo', country: 'México' },
+            { city: 'Tampico', code: 'TAM', name: 'Aeropuerto Internacional General Francisco Javier Mina', country: 'México' },
+            
+            // Estados Unidos (19)
+            { city: 'Nueva York', code: 'JFK', name: 'Aeropuerto Internacional John F. Kennedy', country: 'Estados Unidos' },
+            { city: 'Nueva York', code: 'LGA', name: 'Aeropuerto LaGuardia', country: 'Estados Unidos' },
+            { city: 'Nueva York', code: 'EWR', name: 'Aeropuerto Internacional Newark Liberty', country: 'Estados Unidos' },
+            { city: 'Los Ángeles', code: 'LAX', name: 'Aeropuerto Internacional de Los Ángeles', country: 'Estados Unidos' },
+            { city: 'Chicago', code: 'ORD', name: 'Aeropuerto Internacional O\'Hare', country: 'Estados Unidos' },
+            { city: 'Miami', code: 'MIA', name: 'Aeropuerto Internacional de Miami', country: 'Estados Unidos' },
+            { city: 'Houston', code: 'IAH', name: 'Aeropuerto Internacional George Bush', country: 'Estados Unidos' },
+            { city: 'San Francisco', code: 'SFO', name: 'Aeropuerto Internacional de San Francisco', country: 'Estados Unidos' },
+            { city: 'Las Vegas', code: 'LAS', name: 'Aeropuerto Internacional Harry Reid', country: 'Estados Unidos' },
+            { city: 'Orlando', code: 'MCO', name: 'Aeropuerto Internacional de Orlando', country: 'Estados Unidos' },
+            { city: 'Dallas', code: 'DFW', name: 'Aeropuerto Internacional Dallas/Fort Worth', country: 'Estados Unidos' },
+            { city: 'Atlanta', code: 'ATL', name: 'Aeropuerto Internacional Hartsfield-Jackson', country: 'Estados Unidos' },
+            { city: 'Boston', code: 'BOS', name: 'Aeropuerto Internacional Logan', country: 'Estados Unidos' },
+            { city: 'Seattle', code: 'SEA', name: 'Aeropuerto Internacional Seattle-Tacoma', country: 'Estados Unidos' },
+            { city: 'Denver', code: 'DEN', name: 'Aeropuerto Internacional de Denver', country: 'Estados Unidos' },
+            { city: 'Washington DC', code: 'IAD', name: 'Aeropuerto Internacional Dulles', country: 'Estados Unidos' },
+            { city: 'Phoenix', code: 'PHX', name: 'Aeropuerto Internacional Sky Harbor', country: 'Estados Unidos' },
+            { city: 'San Diego', code: 'SAN', name: 'Aeropuerto Internacional de San Diego', country: 'Estados Unidos' },
+            { city: 'Detroit', code: 'DTW', name: 'Aeropuerto Internacional Metro Detroit', country: 'Estados Unidos' },
+            
+            // Canadá (4)
+            { city: 'Toronto', code: 'YYZ', name: 'Aeropuerto Internacional Pearson', country: 'Canadá' },
+            { city: 'Vancouver', code: 'YVR', name: 'Aeropuerto Internacional de Vancouver', country: 'Canadá' },
+            { city: 'Montreal', code: 'YUL', name: 'Aeropuerto Internacional Pierre Elliott Trudeau', country: 'Canadá' },
+            { city: 'Calgary', code: 'YYC', name: 'Aeropuerto Internacional de Calgary', country: 'Canadá' },
+            
+            // Europa (22)
+            { city: 'Madrid', code: 'MAD', name: 'Aeropuerto Adolfo Suárez Madrid-Barajas', country: 'España' },
+            { city: 'Barcelona', code: 'BCN', name: 'Aeropuerto Josep Tarradellas Barcelona-El Prat', country: 'España' },
+            { city: 'Londres', code: 'LHR', name: 'Aeropuerto de Heathrow', country: 'Reino Unido' },
+            { city: 'Londres', code: 'LGW', name: 'Aeropuerto de Gatwick', country: 'Reino Unido' },
+            { city: 'París', code: 'CDG', name: 'Aeropuerto Charles de Gaulle', country: 'Francia' },
+            { city: 'París', code: 'ORY', name: 'Aeropuerto de Orly', country: 'Francia' },
+            { city: 'Roma', code: 'FCO', name: 'Aeropuerto Leonardo da Vinci-Fiumicino', country: 'Italia' },
+            { city: 'Amsterdam', code: 'AMS', name: 'Aeropuerto de Schiphol', country: 'Países Bajos' },
+            { city: 'Frankfurt', code: 'FRA', name: 'Aeropuerto de Frankfurt', country: 'Alemania' },
+            { city: 'Múnich', code: 'MUC', name: 'Aeropuerto de Múnich', country: 'Alemania' },
+            { city: 'Berlín', code: 'BER', name: 'Aeropuerto de Berlín-Brandenburg', country: 'Alemania' },
+            { city: 'Milán', code: 'MXP', name: 'Aeropuerto de Malpensa', country: 'Italia' },
+            { city: 'Zurich', code: 'ZRH', name: 'Aeropuerto de Zúrich', country: 'Suiza' },
+            { city: 'Viena', code: 'VIE', name: 'Aeropuerto Internacional de Viena', country: 'Austria' },
+            { city: 'Lisboa', code: 'LIS', name: 'Aeropuerto Humberto Delgado', country: 'Portugal' },
+            { city: 'Atenas', code: 'ATH', name: 'Aeropuerto Internacional Eleftherios Venizelos', country: 'Grecia' },
+            { city: 'Estambul', code: 'IST', name: 'Aeropuerto de Estambul', country: 'Turquía' },
+            { city: 'Copenhague', code: 'CPH', name: 'Aeropuerto de Copenhague-Kastrup', country: 'Dinamarca' },
+            { city: 'Estocolmo', code: 'ARN', name: 'Aeropuerto de Arlanda', country: 'Suecia' },
+            { city: 'Oslo', code: 'OSL', name: 'Aeropuerto de Gardermoen', country: 'Noruega' },
+            { city: 'Bruselas', code: 'BRU', name: 'Aeropuerto de Bruselas', country: 'Bélgica' },
+            { city: 'Dublín', code: 'DUB', name: 'Aeropuerto de Dublín', country: 'Irlanda' },
+            
+            // América del Sur (11)
+            { city: 'Buenos Aires', code: 'EZE', name: 'Aeropuerto Internacional Ministro Pistarini', country: 'Argentina' },
+            { city: 'São Paulo', code: 'GRU', name: 'Aeropuerto Internacional de Guarulhos', country: 'Brasil' },
+            { city: 'Río de Janeiro', code: 'GIG', name: 'Aeropuerto Internacional Galeão', country: 'Brasil' },
+            { city: 'Lima', code: 'LIM', name: 'Aeropuerto Internacional Jorge Chávez', country: 'Perú' },
+            { city: 'Bogotá', code: 'BOG', name: 'Aeropuerto Internacional El Dorado', country: 'Colombia' },
+            { city: 'Santiago', code: 'SCL', name: 'Aeropuerto Internacional Arturo Merino Benítez', country: 'Chile' },
+            { city: 'Caracas', code: 'CCS', name: 'Aeropuerto Internacional Simón Bolívar', country: 'Venezuela' },
+            { city: 'Medellín', code: 'MDE', name: 'Aeropuerto Internacional José María Córdova', country: 'Colombia' },
+            { city: 'Cartagena', code: 'CTG', name: 'Aeropuerto Internacional Rafael Núñez', country: 'Colombia' },
+            { city: 'Quito', code: 'UIO', name: 'Aeropuerto Internacional Mariscal Sucre', country: 'Ecuador' },
+            { city: 'Guayaquil', code: 'GYE', name: 'Aeropuerto Internacional José Joaquín de Olmedo', country: 'Ecuador' },
+            
+            // América Central y Caribe (7)
+            { city: 'San José', code: 'SJO', name: 'Aeropuerto Internacional Juan Santamaría', country: 'Costa Rica' },
+            { city: 'Panamá', code: 'PTY', name: 'Aeropuerto Internacional de Tocumen', country: 'Panamá' },
+            { city: 'La Habana', code: 'HAV', name: 'Aeropuerto Internacional José Martí', country: 'Cuba' },
+            { city: 'San Salvador', code: 'SAL', name: 'Aeropuerto Internacional Monseñor Óscar Arnulfo Romero', country: 'El Salvador' },
+            { city: 'Guatemala', code: 'GUA', name: 'Aeropuerto Internacional La Aurora', country: 'Guatemala' },
+            { city: 'San Juan', code: 'SJU', name: 'Aeropuerto Internacional Luis Muñoz Marín', country: 'Puerto Rico' },
+            { city: 'Punta Cana', code: 'PUJ', name: 'Aeropuerto Internacional de Punta Cana', country: 'República Dominicana' },
+            
+            // Asia (11)
+            { city: 'Tokio', code: 'NRT', name: 'Aeropuerto Internacional de Narita', country: 'Japón' },
+            { city: 'Tokio', code: 'HND', name: 'Aeropuerto Internacional de Haneda', country: 'Japón' },
+            { city: 'Seúl', code: 'ICN', name: 'Aeropuerto Internacional de Incheon', country: 'Corea del Sur' },
+            { city: 'Pekín', code: 'PEK', name: 'Aeropuerto Internacional Capital', country: 'China' },
+            { city: 'Shanghái', code: 'PVG', name: 'Aeropuerto Internacional Pudong', country: 'China' },
+            { city: 'Hong Kong', code: 'HKG', name: 'Aeropuerto Internacional de Hong Kong', country: 'Hong Kong' },
+            { city: 'Singapur', code: 'SIN', name: 'Aeropuerto de Changi', country: 'Singapur' },
+            { city: 'Bangkok', code: 'BKK', name: 'Aeropuerto de Suvarnabhumi', country: 'Tailandia' },
+            { city: 'Dubai', code: 'DXB', name: 'Aeropuerto Internacional de Dubái', country: 'Emiratos Árabes' },
+            { city: 'Delhi', code: 'DEL', name: 'Aeropuerto Internacional Indira Gandhi', country: 'India' },
+            { city: 'Mumbai', code: 'BOM', name: 'Aeropuerto Internacional Chhatrapati Shivaji', country: 'India' },
+            
+            // Oceanía (3)
+            { city: 'Sídney', code: 'SYD', name: 'Aeropuerto Internacional Kingsford Smith', country: 'Australia' },
+            { city: 'Melbourne', code: 'MEL', name: 'Aeropuerto de Melbourne', country: 'Australia' },
+            { city: 'Auckland', code: 'AKL', name: 'Aeropuerto de Auckland', country: 'Nueva Zelanda' },
+            
+            // África (3)
+            { city: 'El Cairo', code: 'CAI', name: 'Aeropuerto Internacional de El Cairo', country: 'Egipto' },
+            { city: 'Johannesburgo', code: 'JNB', name: 'Aeropuerto Internacional OR Tambo', country: 'Sudáfrica' },
+            { city: 'Ciudad del Cabo', code: 'CPT', name: 'Aeropuerto Internacional de Ciudad del Cabo', country: 'Sudáfrica' },
+        ];
+
+        // Clase para manejar el autocompletado
+        class Autocomplete {
+            constructor(inputId, listId, data, displayFn) {
+                this.input = document.getElementById(inputId);
+                this.list = document.getElementById(listId);
+                this.data = data;
+                this.displayFn = displayFn;
+                this.currentFocus = -1;
+                
+                this.init();
+            }
+            
+            init() {
+                this.input.addEventListener('input', (e) => this.handleInput(e));
+                this.input.addEventListener('keydown', (e) => this.handleKeydown(e));
+                this.input.addEventListener('focus', () => this.showAllOptions());
+                
+                // Cerrar lista al hacer click fuera
+                document.addEventListener('click', (e) => {
+                    if (e.target !== this.input) {
+                        this.closeList();
+                    }
+                });
+            }
+            
+            handleInput(e) {
+                const val = e.target.value.trim();
+                this.closeList();
+                
+                if (!val) {
+                    this.showAllOptions();
+                    return;
+                }
+                
+                this.currentFocus = -1;
+                
+                // Filtrar datos
+                const filtered = this.data.filter(item => 
+                    this.displayFn(item).toLowerCase().includes(val.toLowerCase())
+                );
+                
+                if (filtered.length > 0) {
+                    this.list.classList.add('active');
+                    filtered.slice(0, 10).forEach(item => {
+                        const div = document.createElement('div');
+                        div.className = 'autocomplete-item';
+                        div.innerHTML = this.displayFn(item);
+                        div.addEventListener('click', () => {
+                            this.selectItem(item);
+                        });
+                        this.list.appendChild(div);
+                    });
+                }
+            }
+            
+            showAllOptions() {
+                this.closeList();
+                this.currentFocus = -1;
+                
+                const displayData = this.data.slice(0, 10);
+                
+                if (displayData.length > 0) {
+                    this.list.classList.add('active');
+                    displayData.forEach(item => {
+                        const div = document.createElement('div');
+                        div.className = 'autocomplete-item';
+                        div.innerHTML = this.displayFn(item);
+                        div.addEventListener('click', () => {
+                            this.selectItem(item);
+                        });
+                        this.list.appendChild(div);
+                    });
+                }
+            }
+            
+            handleKeydown(e) {
+                const items = this.list.getElementsByClassName('autocomplete-item');
+                
+                if (e.keyCode === 40) { // Arrow Down
+                    e.preventDefault();
+                    this.currentFocus++;
+                    this.setActive(items);
+                } else if (e.keyCode === 38) { // Arrow Up
+                    e.preventDefault();
+                    this.currentFocus--;
+                    this.setActive(items);
+                } else if (e.keyCode === 13) { // Enter
+                    e.preventDefault();
+                    if (this.currentFocus > -1 && items[this.currentFocus]) {
+                        items[this.currentFocus].click();
+                    }
+                } else if (e.keyCode === 27) { // Escape
+                    this.closeList();
+                }
+            }
+            
+            setActive(items) {
+                if (!items) return;
+                
+                this.removeActive(items);
+                
+                if (this.currentFocus >= items.length) this.currentFocus = 0;
+                if (this.currentFocus < 0) this.currentFocus = items.length - 1;
+                
+                items[this.currentFocus].classList.add('active');
+                items[this.currentFocus].scrollIntoView({ block: 'nearest' });
+            }
+            
+            removeActive(items) {
+                for (let item of items) {
+                    item.classList.remove('active');
+                }
+            }
+            
+            selectItem(item) {
+                if (this.input.id === 'countryCode') {
+                    this.input.value = item.code;
+                } else {
+                    this.input.value = `${item.city} (${item.code})`;
+                }
+                this.closeList();
+                
+                // Focus en el siguiente campo
+                const nextInput = this.input.closest('.form-group').querySelector('input[type="date"], input[type="tel"]');
+                if (nextInput) {
+                    setTimeout(() => nextInput.focus(), 100);
+                }
+            }
+            
+            closeList() {
+                this.list.innerHTML = '';
+                this.list.classList.remove('active');
+                this.currentFocus = -1;
+            }
+        }
+
+        // Clase principal del formulario
+        class StepperForm {
+            constructor() {
+                this.currentStep = 1;
+                this.totalSteps = 4;
+                this.direction = 0;
+                this.formData = {};
+                
+                this.nextBtn = document.getElementById('nextBtn');
+                this.backBtn = document.getElementById('backBtn');
+                this.btnText = document.getElementById('btnText');
+                this.footerNav = document.getElementById('footer-nav');
+                
+                this.initializeEventListeners();
+                this.initializeAutocomplete();
+                this.updateStepDisplay();
+            }
+
+            initializeAutocomplete() {
+                // Autocomplete para código de país
+                new Autocomplete(
+                    'countryCode',
+                    'countryCodeList',
+                    countryCodes,
+                    (item) => `${item.flag} ${item.code} - ${item.country}`
+                );
+                
+                // Autocomplete para origen
+                new Autocomplete(
+                    'origen',
+                    'origenList',
+                    airports,
+                    (item) => `${item.city} (${item.code})<small>${item.name}, ${item.country}</small>`
+                );
+                
+                // Autocomplete para destino
+                new Autocomplete(
+                    'destino',
+                    'destinoList',
+                    airports,
+                    (item) => `${item.city} (${item.code})<small>${item.name}, ${item.country}</small>`
+                );
+                
+                // Establecer México como predeterminado
+                document.getElementById('countryCode').value = '+52';
+            }
+
+            initializeEventListeners() {
+                this.nextBtn.addEventListener('click', () => this.handleNext());
+                this.backBtn.addEventListener('click', () => this.handleBack());
+                
+                // Validación en tiempo real
+                document.querySelectorAll('.form-input').forEach(input => {
+                    input.addEventListener('input', () => this.clearError(input.id));
+                    input.addEventListener('blur', () => this.validateField(input.id));
+                });
+
+                // Permitir navegación con Enter
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && !this.nextBtn.disabled) {
+                        const activeElement = document.activeElement;
+                        if (!activeElement.classList.contains('autocomplete-item')) {
+                            e.preventDefault();
+                            this.handleNext();
+                        }
+                    }
+                });
+            }
+
+            validateField(fieldId) {
+                const field = document.getElementById(fieldId);
+                if (!field) return true;
+                
+                const value = field.value.trim();
+                let isValid = true;
+                let errorMessage = '';
+
+                switch (fieldId) {
+                    case 'fullName':
+                        if (!value) {
+                            errorMessage = 'El nombre es requerido';
+                            isValid = false;
+                        } else if (value.length < 2) {
+                            errorMessage = 'El nombre debe tener al menos 2 caracteres';
+                            isValid = false;
+                        }
+                        break;
+                    
+                    case 'countryCode':
+                        if (!value) {
+                            errorMessage = 'El código de país es requerido';
+                            isValid = false;
+                        } else if (!value.startsWith('+')) {
+                            errorMessage = 'El código debe comenzar con +';
+                            isValid = false;
+                        }
+                        break;
+                    
+                    case 'whatsapp':
+                        if (!value) {
+                            errorMessage = 'El número de WhatsApp es requerido';
+                            isValid = false;
+                        } else if (value.length < 8) {
+                            errorMessage = 'Ingresa un número válido';
+                            isValid = false;
+                        }
+                        break;
+                    
+                    case 'email':
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!value) {
+                            errorMessage = 'El email es requerido';
+                            isValid = false;
+                        } else if (!emailRegex.test(value)) {
+                            errorMessage = 'Ingresa un email válido';
+                            isValid = false;
+                        }
+                        break;
+                    
+                    case 'origen':
+                        if (!value) {
+                            errorMessage = 'La ciudad de origen es requerida';
+                            isValid = false;
+                        }
+                        break;
+                    
+                    case 'fechaOrigen':
+                        if (!value) {
+                            errorMessage = 'La fecha de salida es requerida';
+                            isValid = false;
+                        } else if (new Date(value) < new Date()) {
+                            errorMessage = 'La fecha debe ser futura';
+                            isValid = false;
+                        }
+                        break;
+                    
+                    case 'destino':
+                        if (!value) {
+                            errorMessage = 'La ciudad de destino es requerida';
+                            isValid = false;
+                        }
+                        break;
+                    
+                    case 'fechaDestino':
+                        if (value) {
+                            const fechaOrigen = document.getElementById('fechaOrigen').value;
+                            if (fechaOrigen && new Date(value) <= new Date(fechaOrigen)) {
+                                errorMessage = 'La fecha de regreso debe ser posterior a la salida';
+                                isValid = false;
+                            }
+                        }
+                        break;
+                }
+
+                this.showError(fieldId, errorMessage, !isValid);
+                return isValid;
+            }
+
+            showError(fieldId, message, show = true) {
+                const field = document.getElementById(fieldId);
+                const errorDiv = document.getElementById(`${fieldId}-error`);
+                
+                if (!field || !errorDiv) return;
+                
+                if (show && message) {
+                    field.classList.add('error');
+                    errorDiv.textContent = message;
+                    errorDiv.classList.remove('hidden');
+                } else {
+                    field.classList.remove('error');
+                    errorDiv.classList.add('hidden');
+                }
+            }
+
+            clearError(fieldId) {
+                this.showError(fieldId, '', false);
+            }
+
+            validateCurrentStep() {
+                const stepFields = this.getStepFields(this.currentStep);
+                let isValid = true;
+                
+                stepFields.forEach(fieldId => {
+                    if (!this.validateField(fieldId)) {
+                        isValid = false;
+                    }
+                });
+                
+                return isValid;
+            }
+
+            getStepFields(step) {
+                const fieldMap = {
+                    1: ['fullName'],
+                    2: ['countryCode', 'whatsapp'],
+                    3: ['email'],
+                    4: ['origen', 'fechaOrigen', 'destino']
+                };
+                return fieldMap[step] || [];
+            }
+
+            async handleNext() {
+                if (this.currentStep <= this.totalSteps) {
+                    if (!this.validateCurrentStep()) {
+                        return;
+                    }
+                    
+                    this.saveStepData();
+                    
+                    if (this.currentStep === this.totalSteps) {
+                        await this.submitForm();
+                    } else {
+                        this.direction = 1;
+                        this.currentStep++;
+                        this.updateStepDisplay();
+                    }
+                }
+            }
+
+            handleBack() {
+                if (this.currentStep > 1) {
+                    this.direction = -1;
+                    this.currentStep--;
+                    this.updateStepDisplay();
+                }
+            }
+
+            saveStepData() {
+                const stepFields = this.getStepFields(this.currentStep);
+                stepFields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    if (field) {
+                        this.formData[fieldId] = field.value;
+                    }
+                });
+            }
+
+            updateStepDisplay() {
+                this.updateIndicators();
+                this.updateStepContent();
+                this.updateButtons();
+            }
+
+            updateIndicators() {
+                const indicators = document.querySelectorAll('.step-indicator');
+                const connectors = document.querySelectorAll('.step-connector-inner');
+                
+                indicators.forEach((indicator, index) => {
+                    const stepNumber = index + 1;
+                    const inner = indicator.querySelector('.step-indicator-inner');
+                    
+                    if (stepNumber < this.currentStep) {
+                        inner.className = 'step-indicator-inner complete';
+                        inner.innerHTML = '<svg class="check-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>';
+                    } else if (stepNumber === this.currentStep) {
+                        inner.className = 'step-indicator-inner active';
+                        inner.innerHTML = '<div class="active-dot"></div>';
+                    } else {
+                        inner.className = 'step-indicator-inner inactive';
+                        inner.innerHTML = `<span class="step-number">${stepNumber}</span>`;
+                    }
+                });
+                
+                connectors.forEach((connector, index) => {
+                    const progress = this.currentStep > index + 1 ? 100 : 0;
+                    connector.style.width = `${progress}%`;
+                });
+            }
+
+            updateStepContent() {
+                const currentStepEl = document.getElementById(`step-${this.currentStep}`);
+                const allSteps = document.querySelectorAll('.step-default:not(#success-step)');
+                
+                allSteps.forEach(step => {
+                    if (step !== currentStepEl) {
+                        step.classList.add('hidden');
+                    }
+                });
+                
+                if (currentStepEl) {
+                    currentStepEl.classList.remove('hidden');
+                    
+                    if (this.direction !== 0) {
+                        currentStepEl.classList.remove('slide-in-left', 'slide-in-right');
+                        currentStepEl.classList.add(this.direction > 0 ? 'slide-in-right' : 'slide-in-left');
+                    }
+                    
+                    const firstInput = currentStepEl.querySelector('.form-input');
+                    if (firstInput) {
+                        setTimeout(() => firstInput.focus(), 100);
+                    }
+                }
+            }
+
+            updateButtons() {
+                if (this.currentStep === 1) {
+                    this.backBtn.classList.add('inactive');
+                    document.querySelector('.footer-nav').classList.remove('spread');
+                    document.querySelector('.footer-nav').classList.add('end');
+                } else {
+                    this.backBtn.classList.remove('inactive');
+                    document.querySelector('.footer-nav').classList.remove('end');
+                    document.querySelector('.footer-nav').classList.add('spread');
+                }
+                
+                if (this.currentStep === this.totalSteps) {
+                    this.btnText.textContent = 'Enviar Registro';
+                } else {
+                    this.btnText.textContent = 'Continuar';
+                }
+            }
+
+            async submitForm() {
+                this.btnText.innerHTML = '<div class="loading"><div class="spinner"></div><span>Enviando...</span></div>';
+                this.nextBtn.disabled = true;
+                
+                try {
+                    this.saveStepData();
+                    
+                    const formData = new FormData();
+                    const fullPhone = `${this.formData.countryCode} ${this.formData.whatsapp}`;
+                    formData.append('whatsapp', fullPhone);
+                    formData.append('fullName', this.formData.fullName);
+                    formData.append('email', this.formData.email);
+                    formData.append('origen', this.formData.origen);
+                    formData.append('fechaOrigen', this.formData.fechaOrigen);
+                    formData.append('destino', this.formData.destino);
+                    
+                    const fechaDestino = document.getElementById('fechaDestino').value;
+                    if (fechaDestino) {
+                        formData.append('fechaDestino', fechaDestino);
+                    }
+                    
+                    const response = await fetch('https://formspree.io/f/mzzayqwe', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        this.showSuccess();
+                    } else {
+                        throw new Error('Error en el envío');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+                    this.btnText.textContent = 'Enviar Registro';
+                    this.nextBtn.disabled = false;
+                }
+            }
+
+            showSuccess() {
+                document.querySelectorAll('.step-default:not(#success-step)').forEach(step => {
+                    step.classList.add('hidden');
+                });
+                
+                document.getElementById('success-step').classList.remove('hidden');
+                this.footerNav.classList.add('hidden');
+                this.currentStep = this.totalSteps + 1;
+                this.updateIndicators();
+            }
+        }
+
+        // Funcionalidad del reproductor de video
+        function initVideoPlayer() {
+            const video = document.getElementById('instructionVideo');
+            const playBtn = document.getElementById('customPlayBtn');
+            const overlay = document.getElementById('videoOverlay');
+            const progressBar = document.getElementById('customProgressBar');
+            const progressFill = document.getElementById('progressFill');
+            const progressHandle = document.getElementById('progressHandle');
+            
+            if (!video || !playBtn || !overlay) return;
+            
+            overlay.classList.add('hidden');
+            
+            const playPromise = video.play();
+            
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        overlay.classList.add('hidden');
+                    })
+                    .catch(error => {
+                        console.log('Autoplay bloqueado:', error);
+                        overlay.classList.remove('hidden');
+                    });
+            }
+            
+            playBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                video.play().then(() => {
+                    overlay.classList.add('hidden');
+                }).catch(error => {
+                    console.error('Error al reproducir:', error);
+                });
+            });
+            
+            overlay.addEventListener('click', () => {
+                video.play().then(() => {
+                    overlay.classList.add('hidden');
+                }).catch(error => {
+                    console.error('Error al reproducir:', error);
+                });
+            });
+            
+            video.addEventListener('timeupdate', () => {
+                if (video.duration) {
+                    const progress = (video.currentTime / video.duration) * 100;
+                    progressFill.style.width = `${progress}%`;
+                    progressHandle.style.left = `${progress}%`;
+                }
+            });
+            
+            progressBar.addEventListener('click', (e) => {
+                const rect = progressBar.getBoundingClientRect();
+                const pos = (e.clientX - rect.left) / rect.width;
+                video.currentTime = pos * video.duration;
+            });
+            
+            video.addEventListener('play', () => {
+                overlay.classList.add('hidden');
+            });
+            
+            video.addEventListener('pause', () => {
+                if (!video.ended) {
+                    overlay.classList.remove('hidden');
+                }
+            });
+            
+            video.addEventListener('ended', () => {
+                overlay.classList.remove('hidden');
+                setTimeout(() => {
+                    document.querySelector('.step-circle-container').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 500);
+            });
+            
+            video.addEventListener('error', () => {
+                console.warn('Error al cargar el video');
+            });
+        }
+
+        // Inicializar todo
+        document.addEventListener('DOMContentLoaded', () => {
+            new StepperForm();
+            initVideoPlayer();
+            
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('fechaOrigen').min = today;
+            document.getElementById('fechaDestino').min = today;
+        });
+    </script>
+</body>
+</html>
