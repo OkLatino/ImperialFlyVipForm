@@ -138,7 +138,15 @@
         @media (max-width: 640px) { .video-steps-list li { font-size: 11px; padding: .3rem 0; gap: .25rem; } }
         .video-steps-list li:hover { color: #DC143C; text-shadow: 0 0 8px rgba(220,20,60,.6); transform: translateX(5px); }
         @media (max-width: 640px) { .video-steps-list li:hover { transform: translateX(3px); } }
-        .video-steps-list li::before { content: '✅'; flex-shrink: 0; font-size: 1em; }
+        .video-steps-list li::before { 
+            content: '';
+            flex-shrink: 0;
+            width: 1.2em;
+            height: 1.2em;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2300D66A'%3E%3Cpath fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
 
         .video-player-wrapper {
             position: relative;
@@ -152,6 +160,119 @@
         }
         @media (max-width: 768px) { .video-player-wrapper { border-radius: .75rem; } }
         @media (max-width: 640px) { .video-player-wrapper { border-radius: .5rem; } }
+
+        /* Botón de sonido */
+        .sound-toggle-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @media (max-width: 768px) { 
+            .sound-toggle-btn { 
+                width: 48px; 
+                height: 48px; 
+                bottom: 16px; 
+                right: 16px; 
+            } 
+        }
+        @media (max-width: 640px) { 
+            .sound-toggle-btn { 
+                width: 40px; 
+                height: 40px; 
+                bottom: 12px; 
+                right: 12px;
+                border-width: 1px;
+            } 
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(255, 215, 0, 0.7); 
+            }
+            50% { 
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 0 10px rgba(255, 215, 0, 0); 
+            }
+        }
+
+        .sound-toggle-btn:hover {
+            background: rgba(220, 20, 60, 0.9);
+            border-color: #FFD700;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            animation: none;
+        }
+        @media (max-width: 640px) { 
+            .sound-toggle-btn:hover { transform: scale(1.05); } 
+        }
+
+        .sound-toggle-btn:active {
+            transform: scale(0.95);
+        }
+
+        .sound-toggle-btn svg {
+            width: 28px;
+            height: 28px;
+            color: #FFD700;
+            transition: all 0.3s ease;
+        }
+        @media (max-width: 768px) { .sound-toggle-btn svg { width: 24px; height: 24px; } }
+        @media (max-width: 640px) { .sound-toggle-btn svg { width: 20px; height: 20px; } }
+
+        .sound-toggle-btn:hover svg {
+            color: #FFF;
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+        }
+
+        .sound-toggle-btn.unmuted {
+            background: rgba(220, 20, 60, 0.9);
+            border-color: #FFD700;
+            animation: none;
+        }
+
+        .sound-toggle-btn.unmuted svg {
+            color: #FFD700;
+        }
+
+        /* Tooltip */
+        .sound-toggle-btn::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 10px);
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            color: #FFD700;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        @media (max-width: 640px) { 
+            .sound-toggle-btn::before { 
+                font-size: 10px; 
+                padding: 6px 10px; 
+            } 
+        }
+
+        .sound-toggle-btn:hover::before {
+            opacity: 1;
+        }
 
         .video-player { width: 100%; height: auto; display: block; background: #000; }
 
@@ -389,12 +510,64 @@
         @media (max-width: 768px) { .error-message { font-size: 10px; } }
         @media (max-width: 640px) { .error-message { font-size: 9px; margin-top: .2rem; } }
 
+        /* PIE DE PÁGINA CON ENLACE AL SITIO WEB */
+        .website-footer {
+            text-align: center;
+            padding: 1.5rem 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 0 0 2rem 2rem;
+        }
+        @media (max-width: 768px) {
+            .website-footer { padding: 1rem 1rem; margin-top: 1.5rem; border-radius: 0 0 1.5rem 1.5rem; }
+        }
+        @media (max-width: 640px) {
+            .website-footer { padding: .75rem .75rem; margin-top: 1rem; border-radius: 0 0 1rem 1rem; }
+        }
+
+        .website-footer-text {
+            font-size: 14px;
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+        @media (max-width: 768px) { .website-footer-text { font-size: 12px; } }
+        @media (max-width: 640px) { .website-footer-text { font-size: 11px; } }
+
+        .website-footer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #DC143C;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            text-shadow: 0 0 8px rgba(220, 20, 60, 0.6);
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            background: rgba(220, 20, 60, 0.1);
+        }
+        @media (max-width: 768px) { .website-footer-link { font-size: 14px; padding: 0.4rem 0.8rem; } }
+        @media (max-width: 640px) { .website-footer-link { font-size: 12px; padding: 0.3rem 0.6rem; gap: 0.3rem; } }
+
+        .website-footer-link:hover {
+            color: #FFD700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 1);
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        @media (max-width: 640px) { .website-footer-link:hover { transform: translateY(-1px); } }
+
         /* Touch */
         @media (hover:none) and (pointer:coarse){
             .next-button:hover { transform:none; }
             .next-button:active { transform:scale(.98); }
             .back-button:hover { color:#a3a3a3; text-shadow:none; }
             .back-button:active { color:#FFD700; }
+            .website-footer-link:hover { transform: none; }
+            .website-footer-link:active { transform: scale(0.95); }
         }
     </style>
 </head>
@@ -404,13 +577,24 @@
         <div class="video-section">
             <div class="video-container">
                 <div class="video-header">
-                    <h2 class="video-title">🎥 Cómo Agendar tu Cita VIP</h2>
+                    <h2 class="video-title">
+                        <svg style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin-right: 8px;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"/>
+                        </svg>
+                        Cómo Agendar tu Cita VIP
+                    </h2>
                     <p class="video-subtitle">Mira este video para entender el proceso</p>
                 </div>
 
                 <!-- Pasos ANTES del video -->
                 <div class="video-steps">
-                    <p class="video-steps-title">📋 En este video aprenderás:</p>
+                    <p class="video-steps-title">
+                        <svg style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>
+                        </svg>
+                        En este video aprenderás:
+                    </p>
                     <ul class="video-steps-list">
                         <li>Cómo completar correctamente el formulario</li>
                         <li>Qué información necesitas tener lista</li>
@@ -424,10 +608,10 @@
                     <video
                         class="video-player"
                         id="instructionVideo"
-                        autoplay
                         loop
                         playsinline
                         preload="auto"
+                        muted
                     >
                         <source src="./assets/PASOS_IMPERIAL_FLY.mp4" type="video/mp4">
                         <p style="padding: 2rem; text-align: center; color: #FFD700;">
@@ -435,6 +619,18 @@
                             <a href="./assets/PASOS_IMPERIAL_FLY.mp4" style="color: #DC143C;">Descarga el video aquí</a>
                         </p>
                     </video>
+
+                    <!-- Botón de control de sonido -->
+                    <button class="sound-toggle-btn" id="soundToggleBtn" data-tooltip="Activar sonido" aria-label="Activar/Desactivar sonido">
+                        <!-- Icono de volumen silenciado -->
+                        <svg id="mutedIcon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                        </svg>
+                        <!-- Icono de volumen activo (oculto por defecto) -->
+                        <svg id="unmutedIcon" style="display: none;" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
 
                     <!-- Barra de progreso roja sincronizada -->
                     <div class="video-progress" id="videoProgress"></div>
@@ -446,7 +642,15 @@
         <div class="step-circle-container">
             <!-- Header -->
             <div class="header">
-                <h1>✈️ Imperial Fly VIP ✈️</h1>
+                <h1>
+                    <svg style="width: 28px; height: 28px; display: inline-block; vertical-align: middle; margin-right: 8px;" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
+                    </svg>
+                    Imperial Fly VIP
+                    <svg style="width: 28px; height: 28px; display: inline-block; vertical-align: middle; margin-left: 8px;" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
+                    </svg>
+                </h1>
                 <p>Registro para Acceso Exclusivo</p>
             </div>
 
@@ -565,6 +769,28 @@
                     </div>
                 </div>
             </form>
+
+            <!-- PIE DE PÁGINA CON ENLACE AL SITIO WEB -->
+            <div class="website-footer">
+                <p class="website-footer-text">
+                    <svg style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin: 0 4px;" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
+                    </svg>
+                    Visita nuestro sitio web oficial y estate atento sobre nuestras promociones
+                    <svg style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin: 0 4px;" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
+                    </svg>
+                </p>
+                <a href="https://imperialfly.com/" target="_blank" rel="noopener noreferrer" class="website-footer-link">
+                    <svg style="width: 20px; height: 20px;" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>www.imperialfly.com</span>
+                    <svg style="width: 20px; height: 20px;" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
+                    </svg>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -968,46 +1194,86 @@
             }
         }
 
-        // --- Inicialización del video con AUDIO + Progreso rojo sincronizado ---
+        // --- SISTEMA DE AUTOPLAY MEJORADO CON SONIDO ---
         function initVideoPlayer() {
             const video = document.getElementById('instructionVideo');
             const progressBar = document.getElementById('videoProgress');
-            if (!video) return;
+            const soundBtn = document.getElementById('soundToggleBtn');
+            const mutedIcon = document.getElementById('mutedIcon');
+            const unmutedIcon = document.getElementById('unmutedIcon');
+            
+            if (!video || !soundBtn) return;
 
-            // Intento de autoplay con audio
-            video.muted = false;
-            const tryPlayUnmuted = () => video.play();
+            // El video inicia silenciado para garantizar autoplay
+            video.muted = true;
 
-            tryPlayUnmuted().catch(async () => {
-                // Si el navegador bloquea el autoplay con audio, iniciar silencioso…
-                try {
-                    video.muted = true;
-                    await video.play();
-                } catch (e) {
-                    console.log('Autoplay bloqueado completamente:', e);
+            // Función para alternar sonido
+            function toggleSound() {
+                video.muted = !video.muted;
+                updateSoundButton();
+            }
+
+            // Actualizar visualización del botón
+            function updateSoundButton() {
+                if (video.muted) {
+                    mutedIcon.style.display = 'block';
+                    unmutedIcon.style.display = 'none';
+                    soundBtn.classList.remove('unmuted');
+                    soundBtn.setAttribute('data-tooltip', 'Activar sonido');
+                } else {
+                    mutedIcon.style.display = 'none';
+                    unmutedIcon.style.display = 'block';
+                    soundBtn.classList.add('unmuted');
+                    soundBtn.setAttribute('data-tooltip', 'Desactivar sonido');
                 }
+            }
 
-                // …y reintentar desmutear sin UI visible cuando haya cualquier interacción natural
-                const tryUnmute = async () => {
-                    try {
-                        video.muted = false;
-                        await video.play();
-                        removeListeners();
-                    } catch (_) { /* seguirá intentando en la siguiente interacción */ }
-                };
-                const removeListeners = () => {
-                    ['mousemove','scroll','keydown','touchstart','pointerdown','click']
-                        .forEach(ev => document.removeEventListener(ev, tryUnmute));
-                    document.removeEventListener('visibilitychange', onVis);
-                };
-                const onVis = () => { if (!document.hidden) tryUnmute(); };
-
-                ['mousemove','scroll','keydown','touchstart','pointerdown','click']
-                    .forEach(ev => document.addEventListener(ev, tryUnmute, { once:true, passive:true }));
-                document.addEventListener('visibilitychange', onVis);
+            // Event listeners para el botón de sonido
+            soundBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleSound();
             });
 
-            // Barra roja sincronizada
+            // Click en el video también activa/desactiva el sonido
+            video.addEventListener('click', () => {
+                toggleSound();
+            });
+
+            // Intentar reproducir automáticamente
+            const autoplay = async () => {
+                try {
+                    await video.play();
+                    console.log('✅ Video reproduciendo automáticamente (muted)');
+                } catch (error) {
+                    console.error('❌ Error en autoplay:', error);
+                    // Intentar nuevamente en la primera interacción
+                    const playOnInteraction = () => {
+                        video.play().catch(() => {});
+                        document.removeEventListener('click', playOnInteraction);
+                        document.removeEventListener('touchstart', playOnInteraction);
+                    };
+                    document.addEventListener('click', playOnInteraction, { once: true });
+                    document.addEventListener('touchstart', playOnInteraction, { once: true });
+                }
+            };
+
+            // Iniciar autoplay cuando el DOM esté listo
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', autoplay);
+            } else {
+                autoplay();
+            }
+
+            // Manejar visibilidad de la página
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden && video.paused) {
+                    video.play().catch(() => {
+                        console.log('No se pudo reanudar el video');
+                    });
+                }
+            });
+
+            // Actualizar barra de progreso
             const updateProgress = () => {
                 if (!isNaN(video.duration) && video.duration > 0) {
                     progressBar.style.width = (video.currentTime / video.duration) * 100 + '%';
@@ -1015,12 +1281,26 @@
                     progressBar.style.width = '0%';
                 }
             };
+
             video.addEventListener('timeupdate', updateProgress);
             video.addEventListener('loadedmetadata', updateProgress);
             video.addEventListener('seeking', updateProgress);
             video.addEventListener('seeked', updateProgress);
             video.addEventListener('ratechange', updateProgress);
-            video.addEventListener('ended', () => { progressBar.style.width = '0%'; });
+            video.addEventListener('ended', () => { 
+                progressBar.style.width = '0%'; 
+            });
+
+            // Inicializar visualización del botón
+            updateSoundButton();
+
+            // Log de eventos para debugging
+            video.addEventListener('play', () => console.log('▶️ Video iniciado'));
+            video.addEventListener('pause', () => console.log('⏸️ Video pausado'));
+            video.addEventListener('volumechange', () => {
+                console.log('🔊 Volumen:', video.muted ? 'Muted' : 'Unmuted');
+                updateSoundButton();
+            });
         }
 
         // Inicializar todo
